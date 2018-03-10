@@ -53,7 +53,7 @@ public class AssistantActivity extends Activity implements Button.OnButtonEventL
     // Peripheral and drivers constants.
     private static final int BUTTON_DEBOUNCE_DELAY_MS = 20;
     // Default on using the Voice Hat on Raspberry Pi 3.
-    private static final boolean USE_VOICEHAT_I2S_DAC = Build.DEVICE.equals(BoardDefaults.DEVICE_RPI3);
+    private static final boolean USE_VOICEHAT_I2S_DAC = false; //Build.DEVICE.equals(BoardDefaults.DEVICE_RPI3);
 
     // Audio constants.
     private static final String PREF_CURRENT_VOLUME = "current_volume";
@@ -63,7 +63,7 @@ public class AssistantActivity extends Activity implements Button.OnButtonEventL
     // Assistant SDK constants.
     private static final String DEVICE_MODEL_ID = "PLACEHOLDER";
     private static final String DEVICE_INSTANCE_ID = "PLACEHOLDER";
-    private static final String LANGUAGE_CODE = "en-US";
+    private static final String LANGUAGE_CODE = "ja-JP"; //"en-US";
 
     // Hardware peripherals.
     private Button mButton;
@@ -182,7 +182,9 @@ public class AssistantActivity extends Activity implements Button.OnButtonEventL
                     public void onAudioSample(ByteBuffer audioSample) {
                         if (mLed != null) {
                             try {
-                                mDac.setSdMode(Max98357A.SD_MODE_SHUTDOWN);
+                                if (USE_VOICEHAT_I2S_DAC) {
+                                    mDac.setSdMode(Max98357A.SD_MODE_SHUTDOWN);
+                                }
                                 mLed.setValue(false);
                             } catch (IOException e) {
                                 Log.e(TAG, "error disabling DAC", e);
