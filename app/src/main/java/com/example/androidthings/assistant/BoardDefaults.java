@@ -33,7 +33,7 @@ public class BoardDefaults {
     public static String getGPIOForLED() {
         switch (Build.DEVICE) {
             case DEVICE_RPI3:
-                return "BCM25";
+                return "BCM6"; //"BCM25";
             case DEVICE_IMX6UL_PICO:
                 return "GPIO4_IO22";
             case DEVICE_IMX7D_PICO:
@@ -49,7 +49,7 @@ public class BoardDefaults {
     public static String getGPIOForButton() {
         switch (Build.DEVICE) {
             case DEVICE_RPI3:
-                return "BCM23";
+                return "BCM21"; //"BCM23";
             case DEVICE_IMX6UL_PICO:
                 return "GPIO2_IO03";
             case DEVICE_IMX7D_PICO:
